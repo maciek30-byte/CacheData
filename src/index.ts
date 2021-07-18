@@ -1,25 +1,8 @@
-import axios from "axios";
-import { read, writeToFile } from "./helper";
+import {checkIndexingArray, readOrWriteFile} from "./aplicationCore";
 
-const cachedData: string[] = ["yeremi"];
+const searchArray:string[] = []
 
-const checkThatExistInArray = (query: string) => {
-  const result = cachedData.findIndex((q) => query === q);
-  if (result !== -1) {
-    return true;
-  } else {
-    return false;
-  }
-};
+const cacheData = (userQuery:string) => {
+readOrWriteFile(userQuery,searchArray)
+}
 
-const checked = (query: string) => {
-  if (checkThatExistInArray(query)) {
-    console.log("wpadlo do odczytu");
-    read(query);
-  } else {
-    console.log("wpadlo do zapisu");
-    writeToFile(query);
-  }
-};
-
-checked("dupa");
