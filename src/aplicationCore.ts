@@ -17,7 +17,7 @@ export const downloadData = async (query: string): Promise<unknown> => {
   }
 };
 // dane pobrane ze strony //
-export const axiosResult = downloadData("harry potter");
+export const axiosResult:unknown = downloadData("harry potter").then((r:any)=> r.json());
 
 // sprawdzanie czy wyraz istnieje w tablicy //
 export const checkIndexingArray = (

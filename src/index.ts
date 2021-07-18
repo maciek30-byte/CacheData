@@ -6,3 +6,6 @@ const cacheData = (userQuery:string) => {
 readOrWriteFile(userQuery,searchArray)
 }
 
+
+cacheData('harry potter');
+cacheData('harry potter');
