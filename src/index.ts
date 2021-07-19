@@ -1,11 +1,10 @@
-import {checkIndexingArray, readOrWriteFile} from "./aplicationCore";
+
+
+import CoreApp from "./components/CoreApp";
 
 const searchArray:string[] = []
 
-const cacheData = (userQuery:string) => {
-readOrWriteFile(userQuery,searchArray)
-}
+const testCore = new CoreApp()
 
+testCore.cachingData('dupa')
 
-cacheData('harry potter');
-cacheData('harry potter');
