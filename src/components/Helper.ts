@@ -1,15 +1,17 @@
 import { promises as fs } from "fs";
 
 class Helper {
-  static checkThatExistInArray(phrase: string, array: string[]) {
-    const result = array.findIndex((element) => element === phrase);
-    if (result !== -1) {
-      console.log("znalazlem element w tablicy");
-      return true;
-    } else {
-      console.log("nie znalazlem elementu w tablicy");
-      return false;
-    }
+  static checkThatExistInArray(phrase: string, array: string[]):boolean {
+    // const result = array.findIndex((element) => element === phrase);
+    // if (result !== -1) {
+    //   console.log("znalazlem element w tablicy");
+    //   return true;
+    // } else {
+    //   console.log("nie znalazlem elementu w tablicy");
+    //   return false;
+    // }
+    return array.includes(phrase);
+
   }
 
   static async readFromJson(jsonName: string) {
@@ -21,13 +23,8 @@ class Helper {
   }
 
   static async writeToJson(phrase: string, data: any) {
-
     try {
-      await fs
-        .writeFile(`src/Db/${phrase}.json`, data, { encoding: "utf-8" })
-        .then(() => {
-          console.log("mayby there try append data to file ");
-        });
+      await fs.writeFile(`src/Db/${phrase}.json`, data, { encoding: "utf-8" });
     } catch (e) {
       console.log(e);
     }

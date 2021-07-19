@@ -9,10 +9,10 @@ class CoreApp {
     // validate query//
 
     this.data = {};
-    this.searchingArray = ['dupa'];
+    this.searchingArray = ["dupa"];
   }
 
-  setData(data: unknown) {
+  setData(data: unknown):void {
     this.data = data;
   }
 
@@ -28,14 +28,16 @@ class CoreApp {
     }
   }
 
-  async cachingData(query: string) {
+  async cachingData(query: string)  {
     try {
       if (Helper.checkThatExistInArray(query, this.searchingArray)) {
         console.log("data is download froma cache");
-        return await Helper.readFromJson(query);
+        const data = await Helper.readFromJson(query);
+        console.log('this is data from rowling',data)
       } else {
         await this.fetchData(query);
-        await Helper.writeToJson(query, this.data);
+        const data = await this.fetchData(query);
+        await Helper.writeToJson(query, JSON.stringify(data));
         this.searchingArray.push(query);
         console.log("file succesfull saved");
       }
