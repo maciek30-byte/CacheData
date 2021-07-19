@@ -9,7 +9,7 @@ class CoreApp {
     // validate query//
 
     this.data = {};
-    this.searchingArray = ['dupa'];
+    this.searchingArray = ["dupa"];
   }
 
   setData(data: unknown) {
@@ -18,14 +18,10 @@ class CoreApp {
 
   async fetchData(query: string): Promise<unknown> {
     //validate query//
-    try {
-      const url = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
-      const { data } = await axios.get(url);
-      await this.setData(data);
-      return data;
-    } catch (e) {
-      console.log(e.message);
-    }
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
+    const { data } = await axios.get(url);
+
+    return data;
   }
 
   async cachingData(query: string) {
@@ -34,8 +30,9 @@ class CoreApp {
         console.log("data is download froma cache");
         return await Helper.readFromJson(query);
       } else {
-        await this.fetchData(query);
-        await Helper.writeToJson(query, this.data);
+        const data = await this.fetchData(query);
+
+        await Helper.writeToJson(query, JSON.stringify(data));
         this.searchingArray.push(query);
         console.log("file succesfull saved");
       }
