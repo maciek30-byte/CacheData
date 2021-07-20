@@ -12,7 +12,7 @@ class CoreApp {
     this.searchingArray = ["dupa"];
   }
 
-  setData(data: unknown):void {
+  setData(data: unknown): void {
     this.data = data;
   }
 
@@ -28,12 +28,12 @@ class CoreApp {
     }
   }
 
-  async cachingData(query: string)  {
+  async cachingData(query: string) {
     try {
       if (Helper.checkThatExistInArray(query, this.searchingArray)) {
         console.log("data is download froma cache");
         const data = await Helper.readFromJson(query);
-        console.log('this is data from rowling',data)
+        console.log("this is data from rowling", data);
       } else {
         await this.fetchData(query);
         const data = await this.fetchData(query);

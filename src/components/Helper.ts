@@ -1,25 +1,12 @@
 import { promises as fs } from "fs";
 
 class Helper {
-  static checkThatExistInArray(phrase: string, array: string[]):boolean {
-    // const result = array.findIndex((element) => element === phrase);
-    // if (result !== -1) {
-    //   console.log("znalazlem element w tablicy");
-    //   return true;
-    // } else {
-    //   console.log("nie znalazlem elementu w tablicy");
-    //   return false;
-    // }
+  static checkThatExistInArray(phrase: string, array: string[]): boolean {
     return array.includes(phrase);
-
   }
 
-  static async readFromJson(jsonName: string) {
-    try {
-      await fs.readFile(`src/Db/${jsonName}.json`, { encoding: "utf-8" });
-    } catch (e) {
-      console.log(e.message);
-    }
+  static readFromJson(jsonName: string) {
+    return fs.readFile(`src/Db/${jsonName}.json`, { encoding: "utf-8" });
   }
 
   static async writeToJson(phrase: string, data: any) {
@@ -28,15 +15,6 @@ class Helper {
     } catch (e) {
       console.log(e);
     }
-
-    //   fs.writeFile(`src/Db/${phrase}.json`, JSON.stringify(data), (error) => {
-    //     if (error) {
-    //       console.log(error.message);
-    //     } else {
-    //       console.log("saved to file success");
-    //     }
-    //   });
-    // }
   }
 }
 
