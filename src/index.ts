@@ -1,14 +1,21 @@
+import FileHelper from "./components/FileHelper";
+import BookApi from "./components/BookApi";
+import CacheControler from "./components/CacheControler";
 
+class App {
 
-import CoreApp from "./components/CoreApp";
+    async showInformation(book:string){
+        if(CacheControler.checkThatQueryExist(book)){
+         await FileHelper.readFromJson(book);
 
+            return
+        } else {
+           const data = await BookApi.getBookByQuery(book);
+           await FileHelper.writeToCache(book,JSON.stringify(data))
+        }
+    }
+}
 
+const first = new App()
 
-const testCore = new CoreApp();
-
-testCore.cachingData('Rowling').then((r)=> {
-    console.log('array before first',testCore.searchingArray)
-    testCore.cachingData('Rowling').then((r)=> console.log('this is response',r))
-})
-
-
+first.showInformation('harry potter');
