@@ -10,4 +10,4 @@ class BookApi {
     }
   }
 }
-export default BookApi
+export default BookApi;

@@ -1,5 +1,3 @@
-import Base from '@common'
+import Base from "@common";
 
-export {
-    Base
-}
+export { Base };

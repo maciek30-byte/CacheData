@@ -13,12 +13,8 @@ class FileHelper {
     });
   }
 
-  static  readFromJson(jsonName: string) {
-      return   fs.readFile(`src/Db/${jsonName}.json`, { encoding: "utf-8" });
-
-
-
-
+  static readFromJson(jsonName: string) {
+    return fs.readFile(`src/Db/${jsonName}.json`, { encoding: "utf-8" });
   }
 
   static async writeToCache(jsonName: string, data: any) {

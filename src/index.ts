@@ -3,20 +3,17 @@ import BookApi from "./components/BookApi";
 import CacheControler from "./components/CacheControler";
 
 class App {
-
-    async showInformation(book:string){
-        if(CacheControler.checkThatQueryExist(book)){
-         ??? await FileHelper.readFromJson(book);
-
-            return
-        } else {
-           const data = await BookApi.getBookByQuery(book);
-           await FileHelper.writeToCache(book,JSON.stringify(data))
-        //    ??
-        }
+  async showInformation(bookName: string) {
+    if (CacheControler.checkThatQueryExist(bookName)) {
+       await FileHelper.readFromJson(bookName);
+    } else {
+      const data = await BookApi.getBookByQuery(bookName);
+      await FileHelper.writeToCache(bookName, JSON.stringify(data));
+      return data;
     }
+  }
 }
 
-const first = new App()
+const first = new App();
 
-first.showInformation('harry potter');
+first.showInformation("harry potter");
